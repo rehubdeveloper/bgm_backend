@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Believer's Family</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: 'Arial', sans-serif;
+            color: #34495e;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 20px auto;
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 32px 20px 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #374b73;
+            margin: 8px 0;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f75e7;
+        }
+
+        /* Feature Section */
+        .section {
+            padding: 24px;
+            margin: 0 24px 20px;
+            background: #fafbfc;
+            border-radius: 12px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f75e7;
+            margin-bottom: 10px;
+        }
+
+        .feature-list {
+            background: #f7f9ff;
+            border-left: 4px solid #1f75e7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        .feature-list ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .feature-list li {
+            margin: 8px 0;
+            color: #2c3e50;
+        }
+
+        /* Button */
+        .cta-container {
+            text-align: center;
+            padding: 24px 20px 20px;
+        }
+
+        .cta-btn {
+            background: #1f75e7;
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 14px 28px;
+            font-size: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px;
+            text-align: center;
+            background: #f1f3f6;
+            font-size: 13px;
+            color: #6c737c;
+            border-radius: 0 0 14px 14px;
+        }
+
+        .footer a {
+            color: #1f75e7;
+            text-decoration: none;
+            margin: 0 6px;
+        }
+
+        /* Mobile */
+        @media only screen and (max-width: 600px) {
+            .container {
+                margin: 10px;
+                border-radius: 0;
+            }
+
+            .section,
+            .feature-list {
+                margin: 16px;
+                padding: 20px;
+            }
+
+            .cta-btn {
+                width: 100%;
+                padding: 14px;
+                text-align: center;
+                display: block;
+                border-radius: 8px;
+            }
+
+            .header-title {
+                font-size: 22px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <img src="https://f005.backblazeb2.com/file/bgministries/resources/bgm_logo.jpg" alt="BGM Logo">
+            <div class="header-title">Welcome to Our Church Family, {{ user.first_name }}!</div>
+            <div class="subtitle">Believer's Ministry</div>
+        </div>
+
+        <!-- WELCOME MESSAGE -->
+        <div class="section">
+            <p>
+                We're thrilled to have you join our Believer's community! Your registration on our official church
+                platform is now complete.
+            </p>
+
+            <div class="feature-list">
+                <p><strong>From today, you'll start receiving:</strong></p>
+                <ul>
+                    <li>Daily Devotionals</li>
+                    <li>Event Notifications</li>
+                    <li>Sermon Updates</li>
+                    <li>Community Announcements</li>
+                </ul>
+            </div>
+
+            <p>
+                If you ever need help or have questions, feel free to reply to this email or contact our admin team.
+            </p>
+        </div>
+
+        <!-- CTA BUTTON -->
+        <div class="cta-container">
+            <a href="{{ website_url }}" class="cta-btn">Visit Our Church Platform</a>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            <strong>Believer's Ministry Team</strong><br>
+            Growing in faith, hope, and love.<br><br>
+            <a href="{{ website_url }}">Website</a> |
+            <a href="{{ facebook_url }}">Facebook</a> |
+            <a href="{{ instagram_url }}">Instagram</a>
+            <p style="margin-top: 10px;">© {{ year }} BGM. All rights reserved.</p>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - Daily Devotional</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #f4f6f8;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 0;
+            border-radius: 14px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 32px 20px 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+        }
+
+        .header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+
+        .header-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #374b73;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1f75e7;
+            margin-top: 4px;
+        }
+
+        /* Verse Section */
+        .verse-box {
+            background: #f7f9ff;
+            border-left: 4px solid #1f75e7;
+            padding: 22px;
+            margin: 24px;
+            border-radius: 10px;
+        }
+
+        .verse-text {
+            font-size: 18px;
+            font-style: italic;
+            margin: 0;
+            color: #2e3a55;
+        }
+
+        /* Content Card */
+        .section {
+            padding: 24px;
+            margin: 0 24px 20px;
+            background: #fafbfc;
+            border-radius: 12px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1f75e7;
+            margin-bottom: 10px;
+        }
+
+        /* Button */
+        .cta-container {
+            text-align: center;
+            padding: 30px 20px 20px;
+        }
+
+        .cta-btn {
+            background: #1f75e7;
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 14px 28px;
+            font-size: 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 24px;
+            text-align: center;
+            background: #f1f3f6;
+            font-size: 13px;
+            color: #6c737c;
+            border-radius: 0 0 14px 14px;
+        }
+
+        .footer a {
+            color: #1f75e7;
+            text-decoration: none;
+            margin: 0 6px;
+        }
+
+        /* MOBILE */
+        @media only screen and (max-width: 600px) {
+            .container {
+                border-radius: 0;
+            }
+
+            .section,
+            .verse-box {
+                margin: 16px;
+                padding: 20px;
+            }
+
+            .cta-btn {
+                width: 100%;
+                padding: 14px;
+                text-align: center;
+                display: block;
+                border-radius: 8px;
+            }
+
+            .header-title {
+                font-size: 22px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .verse-text {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+    <!-- HEADER -->
+    <div class="header">
+        <img src="https://f005.backblazeb2.com/file/bgministries/resources/bgm_logo.jpg" alt="BGM Logo">
+        <div class="header-title">Upcoming Event</div>
+        <div class="subtitle">{{ title }}</div>
+    </div>
+
+    <!-- EVENT DETAILS -->
+    <div class="verse-box"> <!-- reuse devotional style box -->
+        {% if event_date %}
+          <div class="event-detail"><strong>📅 Date:</strong> {{ event_date }}</div>
+        {% endif %}
+        {% if event_time %}
+          <div class="event-detail"><strong>⏰ Time:</strong> {{ event_time }}</div>
+        {% endif %}
+        {% if event_location %}
+          <div class="event-detail"><strong>📍 Location:</strong> {{ event_location }}</div>
+        {% endif %}
+    </div>
+
+    <!-- DESCRIPTION -->
+    <div class="section">
+        <div class="section-title">Details</div>
+        <p>{{ description }}</p>
+    </div>
+
+    <!-- CTA BUTTON -->
+    <div class="cta-container">
+        <a href="{{ link }}" class="cta-btn">See Full Event Details →</a>
+    </div>
+
+    <!-- FOOTER -->
+        <div class="footer">
+            <strong>Believers Glorious Ministry</strong><br>
+            Growing in faith, hope, and love.<br><br>
+
+            <a href="http://believersgloriousministry.org">Website</a> |
+            <a href="#">Facebook</a> |
+            <a href="#">Instagram</a>
+
+            <p style="margin-top: 10px;">© {{ year }} BGM. All rights reserved.</p>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>
