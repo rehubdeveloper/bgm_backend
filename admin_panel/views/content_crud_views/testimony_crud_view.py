@@ -7,6 +7,8 @@ from contents.models.testimony import Testimony
 from contents.serializers.testimony_serializers import TestimonySerializer
 from admin_panel.serializers.testimony_admin_serializer import AdminTestimonySerializer
 from admin_panel.serializers.testimony_reject_serializer import RejectTestimonySerializer
+from rest_framework.parsers import MultiPartParser, FormParser
+
 
 # ---------------------------------------------------------------------
 # LIST & MANAGE TESTIMONIES
@@ -143,3 +145,56 @@ class RejectTestimonyView(APIView):
 
         response_serializer = AdminTestimonySerializer(testimony)
         return Response(response_serializer.data, status=200)
+
+
+
+# ---------------------------------------------------------------------
+# CREATE TESTIMONY (ADMIN)
+# ---------------------------------------------------------------------
+@extend_schema(
+    tags=["Admin Panel - Testimonies"],
+    summary="Create testimony (admin)",
+    request={
+        "multipart/form-data": {
+            "type": "object",
+            "properties": {
+                "text": {"type": "string"},
+                "status": {
+                    "type": "string",
+                    "enum": ["pending", "approved", "rejected"],
+                },
+                "images": {
+                    "type": "array",
+                    "items": {"type": "string", "format": "binary"},
+                },
+                "videos": {
+                    "type": "array",
+                    "items": {"type": "string", "format": "binary"},
+                },
+            },
+            "required": ["text"],
+        }
+    },
+    responses={201: AdminTestimonySerializer},
+)
+class AdminTestimonyCreate(generics.CreateAPIView):
+    permission_classes = [IsSuperAdminOrStaff]
+    serializer_class = AdminTestimonySerializer
+    parser_classes = [MultiPartParser, FormParser]
+
+    def create(self, request, *args, **kwargs):
+        testimony = Testimony.objects.create(
+            text=request.data.get("text"),
+            status=request.data.get("status", "approved"),  # admin default
+        )
+
+        # Add images
+        for img in request.FILES.getlist("images"):
+            testimony.images.create(image=img)
+
+        # Add videos
+        for vid in request.FILES.getlist("videos"):
+            testimony.videos.create(video=vid)
+
+        serializer = AdminTestimonySerializer(testimony)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

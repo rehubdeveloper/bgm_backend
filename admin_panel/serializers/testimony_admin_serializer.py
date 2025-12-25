@@ -30,3 +30,9 @@ class AdminTestimonySerializer(serializers.ModelSerializer):
         Return list of videos with their ID and URL.
         """
         return [{"id": vid.id, "url": vid.video.url} for vid in obj.videos.all()]
+    
+    member_name = serializers.SerializerMethodField()
+
+    def get_member_name(self, obj):
+        return obj.member.first_name if obj.member else "Admin"
+

@@ -3,11 +3,12 @@ from django.urls import path
 from admin_panel.views.member_crud_view import AdminMemberList, AdminMemberRUD
 from admin_panel.views.department_crud_view import AdminDepartmentListCreate, AdminDepartmentRUD
 from admin_panel.views.content_crud_views.devotional_crud_view import AdminDevotionalListCreate, AdminDevotionalRUD
-from admin_panel.views.content_crud_views.testimony_crud_view import AdminTestimonyList, AdminTestimonyRUD, ApproveTestimonyView, RejectTestimonyView
+from admin_panel.views.content_crud_views.testimony_crud_view import AdminTestimonyList, AdminTestimonyRUD, ApproveTestimonyView, RejectTestimonyView, AdminTestimonyCreate
 from admin_panel.views.content_crud_views.sermon_crud_view import AdminSermonListCreate, AdminSermonRUD
 
 from admin_panel.views.content_crud_views.about_crud_view import AdminAboutListCreate, AdminAboutRUD
 from admin_panel.views.content_crud_views.event_crud_view import AdminEventListCreate, AdminEventRUD
+
 
 urlpatterns = [
 
@@ -25,9 +26,11 @@ urlpatterns = [
 
     # Testimonies
     path("testimonies/", AdminTestimonyList.as_view(), name="admin-testimony-list"),
+    path("testimonies/create/", AdminTestimonyCreate.as_view(), name="admin-testimony-create"),
     path("testimonies/<int:pk>/", AdminTestimonyRUD.as_view(), name="admin-testimony-rud"),
     path("testimonies/<int:pk>/approve/", ApproveTestimonyView.as_view(), name="admin-testimony-approve"),
     path("testimonies/<int:pk>/reject/", RejectTestimonyView.as_view(), name="admin-testimony-reject"),
+
 
     #Sermons
     path("sermons/", AdminSermonListCreate.as_view(), name="admin-sermon-list"),
